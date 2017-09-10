@@ -2,7 +2,8 @@
 #   url: redis://redis.example.com:6379
 
 local: &local
-  url: redis://:action_cable@redis-11416.c9.us-east-1-2.ec2.cloud.redislabs.com:11416
+  url: redis://redistogo:b09936333b977ba00f4a0115b90cfc79@koi.redistogo.com:10098/
+
 
 
 development: *local
