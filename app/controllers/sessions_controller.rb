@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    authenticate_user(params[:user_id])
+    user = User.create(ip: request.remote_ip)
+    authenticate_user(user.id)
     redirect_to message_path(1)
   end
 
