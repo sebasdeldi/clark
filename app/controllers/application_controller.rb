@@ -10,7 +10,11 @@ class ApplicationController < ActionController::Base
 
 
   def ensure_authenticated_user
-    authenticate_user(cookies.signed[:user_id]) || redirect_to(new_session_url)
+    if cookies.signed[:user_id]
+      authenticate_user(cookies.signed[:user_id])
+    else
+      redirect_to(new_session_url)
+    end
   end
 
   def authenticate_user(user_id)
