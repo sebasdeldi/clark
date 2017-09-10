@@ -10,9 +10,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.create(ip: request.remote_ip)
-    authenticate_user(user.id)
-    redirect_to message_path(1)
+    if params[:trigger] == true
+      user = User.create(ip: request.remote_ip)
+      authenticate_user(user.id)
+      redirect_to message_path(1)
+    end
   end
 
   def destroy
