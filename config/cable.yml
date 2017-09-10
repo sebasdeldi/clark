@@ -2,7 +2,7 @@
 #   url: redis://redis.example.com:6379
 
 local: &local
-  url: redis-11416.c9.us-east-1-2.ec2.cloud.redislabs.com:11416
+  url: redis://redis-11416.c9.us-east-1-2.ec2.cloud.redislabs.com:11416
 
 
 development: *local
