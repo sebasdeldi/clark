@@ -77,5 +77,5 @@ Rails.application.configure do
 
   # Set Action Cable server url for consumer connection
   config.action_cable.url = 'wss://stark-headland-89423.herokuapp.com/cable'
-  config.action_cable.allowed_request_origins = ['https://stark-headland-89423.herokuapp.com/']
+  #config.action_cable.allowed_request_origins = ['https://stark-headland-89423.herokuapp.com/']
 end
