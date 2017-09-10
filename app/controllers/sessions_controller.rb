@@ -3,11 +3,15 @@ class SessionsController < ApplicationController
 
   def new
     @users = User.all
+    respond_to do |format|
+      format.html
+      format.json { render(json: {users: @users} ) }
+    end
   end
 
   def create
     authenticate_user(params[:user_id])
-    redirect_to examples_url
+    redirect_to message_path(1)
   end
 
   def destroy
