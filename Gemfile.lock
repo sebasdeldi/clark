@@ -174,7 +174,7 @@ DEPENDENCIES
   puma
   rack-cors
   rails (~> 5.1)
-  redis (~> 3.0.1)
+  redis
   responders
   sass-rails (~> 5.0)
   spring

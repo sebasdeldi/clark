@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
       http.request(request)
     end
 
-    Comment.create! content: JSON.parse(response.body).to_h['output']['text'], message: @message, user: @current_user
+    Comment.create! content: JSON.parse(response.body).to_h['output']['text'], message: @message, user: User.last
   
   end
 

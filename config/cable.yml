@@ -1,9 +1,6 @@
-# production:
-#   url: redis://redis.example.com:6379
 
 local: &local
-  url: redis://redistogo:b09936333b977ba00f4a0115b90cfc79@koi.redistogo.com:10098/
-
+  url: redis://localhost:6379
 
 
 development: *local
