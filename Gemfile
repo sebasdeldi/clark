@@ -15,7 +15,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.0'
 gem 'responders'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'activesupport'
 
+gem 'httparty'
 
 group :development, :test do
   gem 'byebug'

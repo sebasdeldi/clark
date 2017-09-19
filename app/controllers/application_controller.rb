@@ -29,4 +29,5 @@ class ApplicationController < ActionController::Base
     @current_user = nil
     cookies.delete(:user_id)
   end
+
 end
