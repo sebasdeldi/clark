@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.1'
 
 gem 'pg'
-gem 'redis', '~> 3.3'
+gem "redis", "~> 3.0.1"
 gem 'puma'
 
 gem 'sass-rails', '~> 5.0'
