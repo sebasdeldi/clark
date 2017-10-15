@@ -5,6 +5,8 @@
   <%= action_cable_meta_tag %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': true %>
+  <link rel="stylesheet" href="/path/to/jquery.mCustomScrollbar.css" />
+
   <%= csrf_meta_tags %>
   <meta name="current-user" id="<%= @current_user.try(:id) %>">
 </head>
@@ -20,6 +22,7 @@
   <%= yield %>
 </div>
 
+<script src="/path/to/jquery.mCustomScrollbar.concat.min.js"></script>
 
 </body>
 </html>
