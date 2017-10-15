@@ -369,9 +369,9 @@ Bounce
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  background: black;
+  background: rgba(0,0,0,0.2);
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-background: black;
+background: rgba(0,0,0,0.2);
 }
