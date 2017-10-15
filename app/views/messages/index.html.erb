@@ -1,7 +1,9 @@
 <h1>Messages</h1>
 
-<ul>
+<div class="messages">
   <% @messages.each do |message| %>
-    <li><%= link_to message.title, message %></li>
+    <div class="messages-content">
+      <%= link_to message.title, message %>
+    </div>
   <% end %>
-</ul>
+</div>
