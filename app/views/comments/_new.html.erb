@@ -2,7 +2,7 @@
 <%= form_for [ message, Comment.new ], remote: true do |form| %>
   <div class="message-box">
     <%= form.text_area :content, class: "message-input" %><br>
-    <%= form.submit 'Send', class: "message-submit" %>
+    <%= form.submit 'Enviar', class: "message-submit" %>
   </div>
 <% end %>
 
