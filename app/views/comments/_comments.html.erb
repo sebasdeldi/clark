@@ -2,7 +2,7 @@
 
 <section class="messages" id="comments" data-channel="comments" data-message-id="<%= message.id %>">
   <div class="messages-content">
-    <%= render message.comments %>
+    <%= render message.comments.reverse %>
   </div>
 </section>
 
