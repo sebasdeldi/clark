@@ -1,11 +1,7 @@
 <h1>Messages</h1>
 
-<div class="messages">
+<ul>
   <% @messages.each do |message| %>
-    <div class="messages-content">
-      <div class="message message-personal">
-        <%= link_to message.title, message %>
-      </div>
-    </div>
+    <li><%= link_to message.title, message %></li>
   <% end %>
-</div>
+</ul>

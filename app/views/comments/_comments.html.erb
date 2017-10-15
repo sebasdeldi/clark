@@ -1,5 +1,9 @@
-<section id="comments" data-channel="comments" data-message-id="<%= message.id %>">
-  <%= render message.comments %>
+
+
+<section class="messages" id="comments" data-channel="comments" data-message-id="<%= message.id %>">
+  <div class="messages-content">
+    <%= render message.comments %>
+  </div>
 </section>
 
 <%= render 'comments/new', message: message %>
