@@ -1,5 +1,5 @@
 
-  <article class="message <% comment.user_id == cookies[:user] ? message-personal : new %>" data-user-id="<%= comment.user_id %>">
+  <article class="message <%= comment.user_id == cookies[:user] ? message-personal : new %>" data-user-id="<%= comment.user_id %>">
     <% if comment.user_id != cookies[:user]%>
       <figure class="avatar">
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />
