@@ -1,4 +1,13 @@
-<article class="message message-personal" data-user-id="<%= comment.user.id %>">
-  <p><%= comment.content %></p>
-  <p><%= cookies[:user]%>
-</article>
+
+<% if comment.user.id == cookies[:user]%>
+  <article class="message message-personal" data-user-id="<%= comment.user.id %>">
+    <p><%= comment.content %></p>
+  </article>
+<% else %>
+  <article class="message new">
+    <figure class="avatar">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />
+    </figure>
+    <p><%= comment.content %></p>
+  </article>
+<% end %>
