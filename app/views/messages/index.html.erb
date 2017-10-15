@@ -3,7 +3,9 @@
 <div class="messages">
   <% @messages.each do |message| %>
     <div class="messages-content">
-      <%= link_to message.title, message %>
+      <div class="message message-personal">
+        <%= link_to message.title, message %>
+      </div>
     </div>
   <% end %>
 </div>
