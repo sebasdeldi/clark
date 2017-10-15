@@ -132,7 +132,6 @@ Messages
   overflow: hidden;
   position: relative;
   width: 100%;
-  padding: 10px;
 
   & .messages-content {
     position: absolute;
@@ -140,6 +139,8 @@ Messages
     left: 0;
     height: 101%;
     width: 100%;
+    padding: 10px;
+
   }
 
 
