@@ -16,7 +16,6 @@ class CommentsController < ApplicationController
         "text" => params[:comment][:content]
       },
       "context" => {
-        "conversation_id" => "1b7b67c0-90ed-45dc-8508-9488bc483d5b",
         "system" => {
           "dialog_stack" => [
             {
