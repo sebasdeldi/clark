@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.create! content: params[:comment][:content], message: @message, user: @current_user
-    uri = URI.parse("https://gateway.watsonplatform.net/conversation/api/v1/workspaces/36ce73dc-4d03-4842-957c-eb92e8ef5fbf/message?version=2017-05-26")
+    uri = URI.parse("https://gateway.watsonplatform.net/conversation/api/v1/workspaces/dfdfbe3d-70c9-4600-be01-ecfcfdb337d7/message/")
     request = Net::HTTP::Post.new(uri)
     request.basic_auth("e896f8e0-e3ef-4bab-8dd0-1caf4cafcf90", "kPhMb4vgk0Iy")
     request.content_type = "application/json"
