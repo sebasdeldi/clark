@@ -7,16 +7,16 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.create! content: params[:comment][:content], message: @message, user: @current_user
-    uri = URI.parse("https://gateway.watsonplatform.net/conversation/api/v1/workspaces/dfdfbe3d-70c9-4600-be01-ecfcfdb337d7/message/")
+    uri = URI.parse("https://gateway.watsonplatform.net/conversation/api/v1/workspaces/36ce73dc-4d03-4842-957c-eb92e8ef5fbf/message?version=2017-05-26")
     request = Net::HTTP::Post.new(uri)
-    request.basic_auth("e896f8e0-e3ef-4bab-8dd0-1caf4cafcf90", "kPhMb4vgk0Iy")
+    request.basic_auth("71be0b3b-ee0d-4064-b1d0-9612f8273419", "3Sk83Ixqcwvb")
     request.content_type = "application/json"
     request.body = JSON.dump({
       "input" => {
         "text" => params[:comment][:content]
       },
       "context" => {
-        "conversation_id" => "dfdfbe3d-70c9-4600-be01-ecfcfdb337d7",
+        "conversation_id" => "1b7b67c0-90ed-45dc-8508-9488bc483d5b",
         "system" => {
           "dialog_stack" => [
             {
