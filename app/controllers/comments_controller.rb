@@ -35,8 +35,8 @@ class CommentsController < ApplicationController
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-
-    Comment.create! content: JSON.parse(response.body).to_h['output']['text'], message: @message, user: User.last
+    bot_answer = JSON.parse(response.body).to_h['output']['text']
+    Comment.create! content: bot_answer[2...-2], message: @message, user: User.last
 
   end
 
