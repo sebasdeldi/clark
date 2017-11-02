@@ -11,12 +11,15 @@ class CommentsController < ApplicationController
     request = Net::HTTP::Post.new(uri)
     request.basic_auth("e896f8e0-e3ef-4bab-8dd0-1caf4cafcf90", "kPhMb4vgk0Iy")
     request.content_type = "application/json"
+    conversation_context = @current_user.conversation_context.nil? ? "" : @current_user.conversation_context
+    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    puts conversation_context
     request.body = JSON.dump({
       "input" => {
         "text" => params[:comment][:content]
       },
       "context" => {
-        "conversation_id": @current_user.conversation_context,
+        "conversation_id": conversation_context,
         "system" => {
           "dialog_stack" => [
             {
