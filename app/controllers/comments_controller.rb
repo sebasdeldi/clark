@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
         "text" => params[:comment][:content]
       },
       "context" => {
+        "conversation_id": @current_user.conversation_context,
         "system" => {
           "dialog_stack" => [
             {
@@ -38,6 +39,8 @@ class CommentsController < ApplicationController
 
     puts "==========================================================="
     puts JSON.parse(response.body).to_h
+    puts "************************************************************"
+    puts JSON.parse(response.body).to_h['context']['conversation_id']
     bot_answer = JSON.parse(response.body).to_h['output']['text']
     Comment.create! content: bot_answer.to_s[2...-2], message: @message, user: User.last
 
