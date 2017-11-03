@@ -14,22 +14,43 @@ class CommentsController < ApplicationController
     conversation_context = @current_user.conversation_context.nil? ? "" : @current_user.conversation_context
     puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     puts conversation_context
-    request.body = JSON.dump({
-      "input" => {
-        "text" => params[:comment][:content]
-      },
-      "context" => {
-        "system" => {
-          "dialog_stack" => [
-            {
-              "dialog_node" => "root"
-            }
-          ],
-          "dialog_turn_counter" => 1,
-          "dialog_request_counter" => 1
+
+    if @current_user.conversation_context.nil?
+      request.body = JSON.dump({
+        "input" => {
+          "text" => params[:comment][:content]
+        },
+        "context" => {
+          "system" => {
+            "dialog_stack" => [
+              {
+                "dialog_node" => "root"
+              }
+            ],
+            "dialog_turn_counter" => 1,
+            "dialog_request_counter" => 1
+          }
         }
-      }
-    })
+      })
+    else
+      request.body = JSON.dump({
+        "input" => {
+          "text" => params[:comment][:content]
+        },
+        "context" => {
+          "conversation_id": @current_user.conversation_context,
+          "system" => {
+            "dialog_stack" => [
+              {
+                "dialog_node" => "root"
+              }
+            ],
+            "dialog_turn_counter" => 1,
+            "dialog_request_counter" => 1
+          }
+        }
+      })
+    end
 
     req_options = {
       use_ssl: uri.scheme == "https",
@@ -43,7 +64,7 @@ class CommentsController < ApplicationController
     puts "==========================================================="
     puts JSON.parse(response.body).to_h
     puts "************************************************************"
-    puts JSON.parse(response.body).to_h['context']
+    puts JSON.parse(response.body).to_h['context']['conversation_id']
     bot_answer = JSON.parse(response.body).to_h['output']['text']
     Comment.create! content: bot_answer.to_s[2...-2], message: @message, user: User.last
 
