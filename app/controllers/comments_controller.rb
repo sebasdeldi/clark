@@ -14,8 +14,7 @@ class CommentsController < ApplicationController
 
 
     if @current_user.conversation_context.nil? || @current_user.conversation_context == ""
-      puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++"
-      puts @current_user.conversation_context
+
       request.body = JSON.dump({
         "input" => {
           "text" => params[:comment][:content]
@@ -33,8 +32,7 @@ class CommentsController < ApplicationController
         }
       })
     else
-      puts "---------------------------------------------------"
-      puts @current_user.conversation_context
+
 
       request.body = JSON.dump({
         "input" => {
@@ -63,12 +61,8 @@ class CommentsController < ApplicationController
       http.request(request)
     end
     puts "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-    puts JSON.parse(response.body).to_h['context']['conversation_id']
+    puts JSON.parse(response.body).to_h
     @current_user.update(conversation_context: (JSON.parse(response.body).to_h['context']['conversation_id']).to_s) if @current_user.conversation_context.nil? || @current_user.conversation_context == ""
-    puts "==========================================================="
-    puts @current_user.inspect
-    puts "************************************************************"
-    puts JSON.parse(response.body).to_h['context']['conversation_id']
     bot_answer = JSON.parse(response.body).to_h['output']['text']
     Comment.create! content: bot_answer.to_s[2...-2], message: @message, user: User.last
 
