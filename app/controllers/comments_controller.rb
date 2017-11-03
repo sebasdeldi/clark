@@ -63,7 +63,7 @@ class CommentsController < ApplicationController
       http.request(request)
     end
 
-    @current_user.update(conversation_context: (JSON.parse(response.body).to_h['context']['conversation_id']).to_s) if @current_user.conversation_context.nil?
+    @current_user.update(conversation_context: (JSON.parse(response.body).to_h['context']['conversation_id']).to_s) if @current_user.conversation_context.nil? || @current_user.conversation_context == ""
     puts "==========================================================="
     puts @current_user.inspect
     puts "************************************************************"
