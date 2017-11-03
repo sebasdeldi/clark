@@ -34,6 +34,8 @@ class CommentsController < ApplicationController
       })
     else
       puts "---------------------------------------------------"
+      puts @current_user.conversation_context
+
       request.body = JSON.dump({
         "input" => {
           "text" => params[:comment][:content]
