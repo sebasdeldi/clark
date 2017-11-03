@@ -62,7 +62,8 @@ class CommentsController < ApplicationController
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-
+    "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+    puts JSON.parse(response.body).to_h['context']['conversation_id']
     @current_user.update(conversation_context: (JSON.parse(response.body).to_h['context']['conversation_id']).to_s) if @current_user.conversation_context.nil? || @current_user.conversation_context == ""
     puts "==========================================================="
     puts @current_user.inspect
