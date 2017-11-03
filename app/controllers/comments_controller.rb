@@ -11,11 +11,10 @@ class CommentsController < ApplicationController
     request = Net::HTTP::Post.new(uri)
     request.basic_auth("e896f8e0-e3ef-4bab-8dd0-1caf4cafcf90", "kPhMb4vgk0Iy")
     request.content_type = "application/json"
-    conversation_context = @current_user.conversation_context.nil? ? "" : @current_user.conversation_context
-    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    puts conversation_context
+
 
     if @current_user.conversation_context.nil?
+      puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++"
       request.body = JSON.dump({
         "input" => {
           "text" => params[:comment][:content]
@@ -33,6 +32,7 @@ class CommentsController < ApplicationController
         }
       })
     else
+      puts "---------------------------------------------------"
       request.body = JSON.dump({
         "input" => {
           "text" => params[:comment][:content]
@@ -60,7 +60,7 @@ class CommentsController < ApplicationController
       http.request(request)
     end
 
-    @current_user.update(conversation_context: JSON.parse(response.body).to_h['context']['conversation_id']) if @current_user.conversation_context.nil?
+    @current_user.update(conversation_context: (JSON.parse(response.body).to_h['context']['conversation_id']).to_s) if @current_user.conversation_context.nil?
     puts "==========================================================="
     puts JSON.parse(response.body).to_h
     puts "************************************************************"
