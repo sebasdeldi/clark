@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     request.content_type = "application/json"
 
 
-    if @current_user.conversation_context.nil?
+    if @current_user.conversation_context.nil? || @current_user.conversation_context == ""
       puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++"
       puts @current_user.conversation_context
       request.body = JSON.dump({
