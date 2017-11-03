@@ -65,7 +65,7 @@ class CommentsController < ApplicationController
 
     @current_user.update(conversation_context: (JSON.parse(response.body).to_h['context']['conversation_id']).to_s) if @current_user.conversation_context.nil?
     puts "==========================================================="
-    puts JSON.parse(response.body).to_h
+    puts @current_user
     puts "************************************************************"
     puts JSON.parse(response.body).to_h['context']['conversation_id']
     bot_answer = JSON.parse(response.body).to_h['output']['text']
