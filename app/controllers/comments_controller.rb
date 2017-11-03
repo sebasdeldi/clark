@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
 
     if @current_user.conversation_context.nil?
       puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++"
+      puts @current_user.conversation_context
       request.body = JSON.dump({
         "input" => {
           "text" => params[:comment][:content]
