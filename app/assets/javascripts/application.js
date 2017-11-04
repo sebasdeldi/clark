@@ -16,7 +16,6 @@
 //= require channels
 //= require_tree .
 
-console.log("ywaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 var $messages = $('.messages-content'),
 d, h, m,
 i = 0;
