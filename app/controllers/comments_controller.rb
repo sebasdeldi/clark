@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
 
     puts "=================================================="
     entity = JSON.parse(response.body)["entities"].first.nil? ? "" : JSON.parse(response.body)["entities"].first["value"]
-    confidence = !JSON.parse(response.body)["entities"].first.nil? "" : JSON.parse(response.body)["entities"].first["confidence"]
+    confidence = !JSON.parse(response.body)["entities"].first.nil? ? "" : JSON.parse(response.body)["entities"].first["confidence"]
     puts entity
     puts confidence
 
