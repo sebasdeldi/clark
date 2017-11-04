@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
 
 
   def create
+    puts ")))))))))))))))))))))))))))))))))))))))))))))))))))))))"
     @comment = Comment.create! content: params[:comment][:content], message: @message, user: @current_user
     uri = URI.parse("https://gateway.watsonplatform.net/conversation/api/v1/workspaces/dfdfbe3d-70c9-4600-be01-ecfcfdb337d7/message?version=2017-05-26")
     request = Net::HTTP::Post.new(uri)
