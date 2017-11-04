@@ -1,5 +1,5 @@
 class IntentsController < ApplicationController
   def index
-    @intents = Intent.all
+    @leads = Lead.all
   end
 end
