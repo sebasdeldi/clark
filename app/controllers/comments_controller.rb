@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     request.content_type = "application/json"
 
 
-    if @current_user.conversation_context.nil? || @current_user.conversation_context == ""
+    #if @current_user.conversation_context.nil? || @current_user.conversation_context == ""
       puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++"
       puts @current_user.conversation_context
       request.body = JSON.dump({
@@ -22,20 +22,20 @@ class CommentsController < ApplicationController
           "text" => params[:comment][:content]
         }
       })
-    else
-      puts "---------------------------------------------------"
-      puts @current_user.conversation_context
+    # else
+    #   puts "---------------------------------------------------"
+    #   puts @current_user.conversation_context
 
-      request.body = JSON.dump({
-        "input" => {
-          "text" => params[:comment][:content]
-        },
-        "context" => {
+    #   request.body = JSON.dump({
+    #     "input" => {
+    #       "text" => params[:comment][:content]
+    #     },
+    #     "context" => {
 
 
-        }
-      })
-    end
+    #     }
+    #   })
+    # end
 
     req_options = {
       use_ssl: uri.scheme == "https",
