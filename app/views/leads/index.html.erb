@@ -7,7 +7,7 @@
 
     <li>
       <ul>
-        <% user.leads do |lead| %>
+        <% user.leads.each do |lead| %>
           <li><%= lead.subject %></li>
         <% end %>
       </ul>
