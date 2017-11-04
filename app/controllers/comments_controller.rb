@@ -27,13 +27,10 @@ class CommentsController < ApplicationController
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-
-    puts "=================================================="
+    puts "=========================================================="
+    puts response.body
     entity = JSON.parse(response.body)["entities"].first.nil? ? "" : JSON.parse(response.body)["entities"].first["value"]
     confidence = JSON.parse(response.body)["entities"].first.nil? ? "" : JSON.parse(response.body)["entities"].first["confidence"]
-    puts entity
-    puts confidence
-
     context = ((JSON.parse response.body)["context"])
     bot_answer = JSON.parse(response.body).to_h['output']['text']
     @current_user.update(conversation_context: context)
