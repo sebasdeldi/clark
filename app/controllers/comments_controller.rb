@@ -18,9 +18,7 @@ class CommentsController < ApplicationController
     request.body = JSON.dump({
       "input": {
         "text": params[:comment][:content]
-      },
-      "context": JSON.parse(@current_user.conversation_context).to_h
-    })
+      }    })
 
     req_options = {
       use_ssl: uri.scheme == "https",
