@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'intents/index'
+  get 'leads/index'
 
   resource  :session
 
