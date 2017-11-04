@@ -27,12 +27,20 @@ class CommentsController < ApplicationController
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-    puts "=========================================================="
-    puts response.body
+
     entity = JSON.parse(response.body)["entities"].first.nil? ? "" : JSON.parse(response.body)["entities"].first["value"]
-    confidence = JSON.parse(response.body)["entities"].first.nil? ? "" : JSON.parse(response.body)["entities"].first["confidence"]
     context = ((JSON.parse response.body)["context"])
     bot_answer = JSON.parse(response.body).to_h['output']['text']
+
+    if entity == "phone"
+      @current_user.update(phone: entity)
+    elsif entity == "email"
+      @current_user.update(email: entity)
+    else
+      Intent.create(user: @current_user, subject: entity)
+    end
+
+
     @current_user.update(conversation_context: context)
     Comment.create! content: bot_answer.first , message: @message, user: User.last
   end
