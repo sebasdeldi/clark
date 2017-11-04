@@ -38,12 +38,12 @@ class CommentsController < ApplicationController
       http.request(request)
     end
     puts "====================================================="
-    puts response
+    puts response.body.context
     bot_answer = JSON.parse(response.body).to_h['output']['text']
-    puts bot_answer
-    @current_user.update(conversation_context: JSON.parse(response.body).to_h['context'])
-    puts "********************************************************"
-    puts JSON.parse @current_user.conversation_context
+    #puts bot_answer
+    #@current_user.update(conversation_context: JSON.parse(response.body).to_h['context'])
+    #puts "********************************************************"
+    #puts @current_user.conversation_context
     Comment.create! content: bot_answer, message: @message, user: User.last
 
   end
