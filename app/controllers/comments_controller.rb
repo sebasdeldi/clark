@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
     puts response
     bot_answer = JSON.parse(response.body).to_h['output']['text']
     puts bot_answer
-    Comment.create! content: bot_answer[2...-2], message: @message, user: User.last
+    Comment.create! content: bot_answer, message: @message, user: User.last
 
   end
 
