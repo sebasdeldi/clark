@@ -29,8 +29,8 @@ class CommentsController < ApplicationController
     end
 
     puts "=================================================="
-    entity = JSON.parse(response.body)["entities"].first["value"]
-    confidence = JSON.parse(response.body)["entities"].first["confidence"]
+    entity = JSON.parse(response.body)["entities"].first.nil? ? "" : JSON.parse(response.body)["entities"].first["value"]
+    confidence = !JSON.parse(response.body)["entities"].first.nil? "" : JSON.parse(response.body)["entities"].first["confidence"]
     puts entity
     puts confidence
 
