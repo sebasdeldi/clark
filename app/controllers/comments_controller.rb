@@ -19,17 +19,7 @@ class CommentsController < ApplicationController
       "input": {
         "text": params[:comment][:content]
       },
-      "context": {
-        "system": {
-          "dialog_stack": [
-            {
-              "dialog_node": "root"
-            }
-          ],
-          "dialog_turn_counter": 1,
-          "dialog_request_counter": 1
-        }
-      }
+      "context": @current_user.conversation_context.to_h
     })
 
     req_options = {
@@ -39,21 +29,12 @@ class CommentsController < ApplicationController
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-    puts "====================================================="
-    puts response.body
-    puts "88888888888888888888888888888888888888888888888888888"
     context = (JSON.parse response.body)["context"]
-    puts "llllllllllllllllllllllllllllllllllllllllllllllllllllllll"
-    puts context
-    puts "999999999999999999999999999999999999999999999999999"
-    puts context.to_h
     bot_answer = JSON.parse(response.body).to_h['output']['text']
-    #puts bot_answer
-    #@current_user.update(conversation_context: JSON.parse(response.body).to_h['context'])
-    #puts "********************************************************"
-    #puts @current_user.conversation_context
+    @current_user.update(conversation_context: context)
+    puts "********************************************************"
+    puts @current_user.conversation_context
     Comment.create! content: bot_answer, message: @message, user: User.last
-
   end
 
   private
