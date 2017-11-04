@@ -16,18 +16,18 @@ class CommentsController < ApplicationController
 
 
     request.body = JSON.dump({
-      "input" => {
-        "text" => params[:comment][:content]
+      "input": {
+        "text": params[:comment][:content]
       },
-      "context" => {
-        "system" => {
-          "dialog_stack" => [
+      "context": {
+        "system": {
+          "dialog_stack": [
             {
-              "dialog_node" => "root"
+              "dialog_node": "root"
             }
           ],
-          "dialog_turn_counter" => 1,
-          "dialog_request_counter" => 1
+          "dialog_turn_counter": 1,
+          "dialog_request_counter": 1
         }
       }
     })
