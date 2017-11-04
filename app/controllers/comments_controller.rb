@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
       "input": {
         "text": params[:comment][:content]
       },
-      "context": @current_user.conversation_context.to_h
+      "context": JSON.parse(@current_user.conversation_context).to_h
     })
 
     req_options = {
