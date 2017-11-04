@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
     end
 
     puts "=================================================="
-    entity = JSON.parse(response.body)["entities"]
+    entity = JSON.parse(response.body)
     puts entity
     puts entity.class
     context = ((JSON.parse response.body)["context"])
