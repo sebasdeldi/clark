@@ -4,10 +4,10 @@ class LeadsController < ApplicationController
   def index
     @users = User.joins(:leads)
     puts "======================================="
-    puts @users.first.leads
-    puts @users.second.leads
-    puts @users.third.leads
-    puts @users.fourth.leads
+    puts @users.first.leads.inspect
+    puts @users.second.leads.inspect
+    puts @users.third.leads.inspect
+    puts @users.fourth.leads.inspect
 
   end
 end
