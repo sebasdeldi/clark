@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
       @current_user.update(phone: entity)
     elsif entity == "email"
       @current_user.update(email: entity)
-    else
+    elsif entity != ""
       Lead.create(user: @current_user, subject: entity)
     end
 
