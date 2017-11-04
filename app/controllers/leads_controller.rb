@@ -2,6 +2,6 @@ class LeadsController < ApplicationController
   layout 'leads'
 
   def index
-    @leads = Lead.all
+    @users = User.joins(:leads).uniq
   end
 end

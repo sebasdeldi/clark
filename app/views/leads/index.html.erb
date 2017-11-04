@@ -1,7 +1,17 @@
 <ul>
 
-  <% @leads.each do |lead| %>
-    <li><%= lead.subject %></li>
+  <% @users.each do |user| %>
+    <li> <%= user.ip %> </li>
+    <li> <%= user.phone %> </li>
+    <li> <%= user.email %> </li>
+
+    <li>
+      <ul>
+        <% user.leads do |lead| %>
+          <li><%= lead.subject %></li>
+        <% end %>
+      </ul>
+    </li>
   <% end %>
 
-<ul>
+</ul>
