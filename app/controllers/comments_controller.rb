@@ -11,6 +11,8 @@ class CommentsController < ApplicationController
     request = Net::HTTP::Post.new(uri)
     request.basic_auth("e896f8e0-e3ef-4bab-8dd0-1caf4cafcf90", "kPhMb4vgk0Iy")
     request.content_type = "application/json"
+
+
     request.body = JSON.dump({
       "input" => {
         "text" => params[:comment][:content]
@@ -41,7 +43,7 @@ class CommentsController < ApplicationController
     puts bot_answer
     @current_user.update(conversation_context: JSON.parse(response.body).to_h['context'])
     puts "********************************************************"
-    puts @current_user.conversation_context
+    puts JSON.parse @current_user.conversation_context
     Comment.create! content: bot_answer, message: @message, user: User.last
 
   end
