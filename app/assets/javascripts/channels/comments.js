@@ -14,8 +14,8 @@ App.comments = App.cable.subscriptions.create("CommentsChannel", {
     if (!this.userIsCurrentUser(data.comment)) {
       setTimeout(function(){
         var collection =  this.collection().append(data.comment);
-        return collection;
-      }, 1000);
+      }, 500);
+      return collection;
     }
   },
   userIsCurrentUser: function(comment) {
