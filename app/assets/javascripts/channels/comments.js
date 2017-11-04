@@ -13,7 +13,7 @@ App.comments = App.cable.subscriptions.create("CommentsChannel", {
   received: function(data) {
     if (!this.userIsCurrentUser(data.comment)) {
       var collection =  this.collection().append(data.comment);
-      console.log(collection);
+      console.log(data);
       return collection;
     }
   },
