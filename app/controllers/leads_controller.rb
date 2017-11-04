@@ -2,7 +2,7 @@ class LeadsController < ApplicationController
   layout 'leads'
 
   def index
-    @users = User.joins(:leads)
+    @users = User.joins(:leads).uniq
     puts "======================================="
     puts @users.first.leads.inspect
     puts @users.second.leads.inspect
