@@ -42,7 +42,11 @@ class CommentsController < ApplicationController
     puts "====================================================="
     puts response.body
     puts "88888888888888888888888888888888888888888888888888888"
-    puts (JSON.parse response.body).context
+    context = (JSON.parse response.body)["context"]
+    puts "llllllllllllllllllllllllllllllllllllllllllllllllllllllll"
+    puts context
+    puts "999999999999999999999999999999999999999999999999999"
+    JSON.parse context
     bot_answer = JSON.parse(response.body).to_h['output']['text']
     #puts bot_answer
     #@current_user.update(conversation_context: JSON.parse(response.body).to_h['context'])
