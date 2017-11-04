@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
     elsif entity == "email"
       @current_user.update(email: entity)
     else
-      Intent.create(user: @current_user, subject: entity)
+      Lead.create(user: @current_user, subject: entity)
     end
 
 
