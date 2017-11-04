@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-    context = (JSON.parse response.body)["context"]
+    context = ((JSON.parse response.body)["context"]).gsub! "=>", ":"
     bot_answer = JSON.parse(response.body).to_h['output']['text']
     @current_user.update(conversation_context: context)
     puts "********************************************************"
