@@ -4,7 +4,9 @@ class LeadsController < ApplicationController
   def index
     @users = User.joins(:leads).uniq
     puts "======================================="
-    puts @users.inspect
+    puts User.all
+    puts User.all.count
+    puts User.all.inspect
 
   end
 end
