@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   def ensure_authenticated_user
     if cookies.signed[:user_id]
       authenticate_user(cookies.signed[:user_id])
+      puts "ñññññññññññññññññññññññññññññññññññññññññññññññ"
+      puts @current_user
     else
       redirect_to(new_session_url)
     end
