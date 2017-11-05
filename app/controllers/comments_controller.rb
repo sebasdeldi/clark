@@ -33,7 +33,8 @@ class CommentsController < ApplicationController
     bot_answer = JSON.parse(response.body).to_h['output']['text']
 
     puts "==============================================="
-    puts entity
+    puts JSON.parse(response.body)["entities"]
+
 
 
     if entity == "telefono"
