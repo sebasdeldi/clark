@@ -13,6 +13,13 @@ class SessionsController < ApplicationController
     puts "99999999999999999999999999999999999999999999999999999999999"
     if params[:trigger] == 'true'
       user = User.create(ip: request.remote_ip)
+
+      cookies[:user] = user.id
+      cookies.signed[:user_id] ||= user.id
+      @current_user = User.find(cookies.signed[:user_id])
+      puts "*****************************************************"
+      puts @current_user
+
       authenticate_user(user.id)
       message = Message.create(user: user)
       redirect_to message_path(message.id)

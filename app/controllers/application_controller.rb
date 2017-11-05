@@ -19,15 +19,15 @@ class ApplicationController < ActionController::Base
   #   end
   # end
 
-  def authenticate_user(user_id)
-    if authenticated_user = User.find_by(id: user_id)
-      cookies[:user] = user_id
-      cookies.signed[:user_id] ||= user_id
-      @current_user = User.find(cookies.signed[:user_id])
-      puts "*****************************************************"
-      puts @current_user
-    end
-  end
+  # def authenticate_user(user_id)
+  #   if authenticated_user = User.find_by(id: user_id)
+  #     cookies[:user] = user_id
+  #     cookies.signed[:user_id] ||= user_id
+  #     @current_user = User.find(cookies.signed[:user_id])
+  #     puts "*****************************************************"
+  #     puts @current_user
+  #   end
+  # end
 
   def unauthenticate_user
     ActionCable.server.disconnect(current_user: @current_user)
