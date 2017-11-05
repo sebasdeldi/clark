@@ -34,6 +34,7 @@ class CommentsController < ApplicationController
 
     puts "==============================================="
     puts JSON.parse(response.body)["entities"].first
+    puts "==============================================="
     puts JSON.parse(response.body)["entities"].second
 
 
