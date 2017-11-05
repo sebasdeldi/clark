@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
 
 
     if entity == "telefono"
-      @current_user.update(phone: (params[:comment][:content]).sub(/([0-9])*/, ''))
+      @current_user.update(phone: (params[:comment][:content]).gsub!(/[a-zA-Z]/, '').delete(" "))
     elsif entity == "email"
       @current_user.update(email: params[:comment][:content])
     elsif entity != ""
