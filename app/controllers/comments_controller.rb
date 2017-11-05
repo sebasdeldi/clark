@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
     puts entity
 
 
-    if entity == "phone"
+    if entity == "telefono"
       @current_user.update(phone: entity)
     elsif entity == "email"
       @current_user.update(email: entity)
