@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
     bot_answer = JSON.parse(response.body).to_h['output']['text']
 
     puts "==============================================="
-    puts JSON.parse(response.body)["entities"].first
+    puts JSON.parse(response.body)["entities"]
     puts "==============================================="
     puts JSON.parse(response.body)["entities"].second
 
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
 
 
     if entity == "telefono"
-      @current_user.update(phone: entity)
+      @current_user.update(phone: JSON.parse(response.body)["entities"].first["value"])
     elsif entity == "email"
       @current_user.update(email: entity)
     elsif entity != ""
