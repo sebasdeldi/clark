@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
         @current_user.update(phone: ent["value"])
       elsif ent["value"] == "email"
         (params[:comment][:content]).scan(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i) { |x| @current_user.update(email: x) }
-      elsif entity != "" || entity != "sys-date" || entity != "email"
+      elsif ((entity != "") && (entity != "sys-date") && (entity != "email"))
         Lead.create(user: @current_user, subject: entity)
       end
     end
