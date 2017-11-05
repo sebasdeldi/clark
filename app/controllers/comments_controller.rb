@@ -41,9 +41,9 @@ class CommentsController < ApplicationController
 
 
     if entity == "telefono"
-      @current_user.update(phone: JSON.parse(response.body)["entities"].first["value"])
+      @current_user.update(phone: params[:comment][:content])
     elsif entity == "email"
-      @current_user.update(email: entity)
+      @current_user.update(email: params[:comment][:content])
     elsif entity != ""
       Lead.create(user: @current_user, subject: entity)
     end
