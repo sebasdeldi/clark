@@ -38,14 +38,14 @@ class CommentsController < ApplicationController
     puts JSON.parse(response.body)["entities"].second
 
 
-
-
-    if entity == "sys-number"
-      @current_user.update(phone: (params[:comment][:content]).gsub(/[a-zA-Z]/, "").delete(" "))
-    elsif entity == "email"
-      @current_user.update(email: params[:comment][:content])
-    elsif entity != ""
-      Lead.create(user: @current_user, subject: entity)
+    JSON.parse(response.body)["entities"].each do |ent|
+      if ent["entity"] == "sys-number"
+        @current_user.update(phone: ent["value"])
+      elsif ent["value"] == "email"
+        @current_user.update(email: params[:comment][:content])
+      elsif entity != ""
+        Lead.create(user: @current_user, subject: entity)
+      end
     end
 
     @current_user.update(conversation_context: context)
