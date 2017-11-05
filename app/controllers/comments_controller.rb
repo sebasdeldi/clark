@@ -32,17 +32,13 @@ class CommentsController < ApplicationController
     context = ((JSON.parse response.body)["context"])
     bot_answer = JSON.parse(response.body).to_h['output']['text']
 
-    puts "==============================================="
-    puts (JSON.parse(response.body)["entities"])
-    puts "==============================================="
-    puts JSON.parse(response.body)["entities"].second
 
 
     JSON.parse(response.body)["entities"].each do |ent|
       if ent["entity"] == "sys-number"
         @current_user.update(phone: ent["value"])
       elsif ent["value"] == "email"
-        @current_user.update(email: params[:comment][:content])
+        (params[:comment][:content]).scan(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i) { |x| @current_user.update(email: x) }
       elsif entity != "" && entity != "sys-date"
         Lead.create(user: @current_user, subject: entity)
       end
