@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     request = Net::HTTP::Post.new(uri)
     request.basic_auth("e896f8e0-e3ef-4bab-8dd0-1caf4cafcf90", "kPhMb4vgk0Iy")
     request.content_type = "application/json"
-
+    puts "tttttttttttttttttttttttttttttttttttttttttttttttt"
 
     request.body = JSON.dump({
       "input": {
@@ -30,9 +30,13 @@ class CommentsController < ApplicationController
       http.request(request)
     end
 
+    puts "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
+    puts response
     entity = JSON.parse(response.body)["entities"].first.nil? ? "" : JSON.parse(response.body)["entities"].first["value"]
     context = ((JSON.parse response.body)["context"])
     bot_answer = JSON.parse(response.body).to_h['output']['text']
+
+    puts "Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
 
     if entity == "phone"
       @current_user.update(phone: entity)
@@ -42,7 +46,7 @@ class CommentsController < ApplicationController
       Lead.create(user: @current_user, subject: entity)
     end
 
-
+    puts "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
     @current_user.update(conversation_context: context)
     Comment.create! content: bot_answer.first , message: @message, user: User.last
   end
