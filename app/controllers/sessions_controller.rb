@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    puts "99999999999999999999999999999999999999999999999999999999999"
     if params[:trigger] == 'true'
       user = User.create(ip: request.remote_ip)
       authenticate_user(user.id)
