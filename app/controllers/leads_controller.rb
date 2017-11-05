@@ -7,6 +7,7 @@ class LeadsController < ApplicationController
     puts User.all
     puts User.all.count
     puts User.all.inspect
+    puts User.last.inspect
 
   end
 end
