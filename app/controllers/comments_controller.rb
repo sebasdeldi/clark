@@ -14,12 +14,13 @@ class CommentsController < ApplicationController
     request.basic_auth("e896f8e0-e3ef-4bab-8dd0-1caf4cafcf90", "kPhMb4vgk0Iy")
     request.content_type = "application/json"
     puts "tttttttttttttttttttttttttttttttttttttttttttttttt"
+    context = @current_user.conversation_context.nil? ? {} : JSON.parse(@current_user.conversation_context.to_s.gsub! "=>", ":")
 
     request.body = JSON.dump({
       "input": {
         "text": params[:comment][:content]
       },
-      "context": JSON.parse(@current_user.conversation_context.to_s.gsub! "=>", ":")
+      "context": context
     })
 
     req_options = {
