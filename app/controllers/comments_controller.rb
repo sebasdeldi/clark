@@ -33,14 +33,14 @@ class CommentsController < ApplicationController
     bot_answer = JSON.parse(response.body).to_h['output']['text']
 
     puts "==============================================="
-    puts JSON.parse(response.body)["entities"]
+    puts JSON.parse(response.body)["entities"]["entity"]
     puts "==============================================="
     puts JSON.parse(response.body)["entities"].second
 
 
 
 
-    if entity == "telefono"
+    if entity == "sys-number"
       @current_user.update(phone: params[:comment][:content])
     elsif entity == "email"
       @current_user.update(email: params[:comment][:content])
